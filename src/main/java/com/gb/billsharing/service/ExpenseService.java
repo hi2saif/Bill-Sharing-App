@@ -13,7 +13,10 @@ import java.util.UUID;
 public class ExpenseService {
     private NotificationService notificationService = new NotificationServiceImpl();
 
-    public Expense createExpense(String title, String description, LocalDateTime expenseDate, double expenseAmount,
+    public Expense createExpense(String title,
+                                 String description,
+                                 LocalDateTime expenseDate,
+                                 double expenseAmount,
                                  String userId) {
         Expense expense = Expense.builder()
                 .id(UUID.randomUUID().toString())
@@ -54,7 +57,6 @@ public class ExpenseService {
         Expense expense = ExpenseRepository.expenseMap.get(expenseId);
         expense.getExpenseGroup()
                 .getUserContributions().putIfAbsent(emailId, new UserShare(emailId, share));
-
     }
 
     public void setExpenseStatus(String expenseId, ExpenseStatus expenseStatus) {
